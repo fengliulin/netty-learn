@@ -6,7 +6,11 @@
 
   <groupId>cc.chengheng</groupId>
   <artifactId>netty-learn</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>A-BIO</module>
+  </modules>
 
 
   <properties>
