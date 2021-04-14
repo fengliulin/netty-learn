@@ -11,7 +11,7 @@ import java.util.Objects;
  * 可以让文件直接在内存修改
  * MappedByteBuffer：文件在堆外内存修改,操作系统不需要拷贝一次
  */
-public class MappedByteBuffer基本使用 {
+public class MappedByteBuffer文件在内存修改 {
 
     private static final String resourceFolder;
 
