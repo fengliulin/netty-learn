@@ -52,6 +52,9 @@ public class NioServer {
                      */
                     SocketChannel socketChannel = serverSocketChannel.accept();
 
+                    System.out.println("客户端连接成功，生成一个socketChannel " + socketChannel.hashCode());
+
+                    // 设置非阻塞模式
                     socketChannel.configureBlocking(false);
 
                     // 将当前的 SocketChannel 注册到 Selector, 关注事件为 SelectionKey.OP_READ, 同时给SocketChannel 关联一个Buffer
