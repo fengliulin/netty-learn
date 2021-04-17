@@ -23,6 +23,8 @@ public class NioServer {
         // ServerSocketChannel 注册到 Selector,关心事件为 OP_ACCEPT
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
+        System.out.println("服务器启动注册后的selectionKey 数量=" + selector.keys().size());
+
         // 循环等待客户端连接
         while (true) {
 
@@ -36,8 +38,12 @@ public class NioServer {
              *  1、如果返回的 > 0，表示已经获取到关注的事件
              *  2、selector.selectedKeys(); 返回关注事件的集合
              *      通过 selectedKeys 反向获取通道
+             *
+             * selector.selectedKeys() 返回只有事件发生的，不是注册的
              */
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
+
+            System.out.println("selectionKeys 数量 = " + selectionKeys.size());
 
             // 遍历集合，使用迭代器遍历
             Iterator<SelectionKey> keyIterator = selectionKeys.iterator();
@@ -52,18 +58,23 @@ public class NioServer {
                      */
                     SocketChannel socketChannel = serverSocketChannel.accept();
 
-                    System.out.println("客户端连接成功，生成一个socketChannel " + socketChannel.hashCode());
+//                    System.out.println("客户端连接成功，生成一个socketChannel " + socketChannel.hashCode());
 
                     // 设置非阻塞模式
                     socketChannel.configureBlocking(false);
 
                     // 将当前的 SocketChannel 注册到 Selector, 关注事件为 SelectionKey.OP_READ, 同时给SocketChannel 关联一个Buffer
                     socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
+
+                    System.out.println("客户端连接后注册后的selectionKey 数量=" + selector.keys().size());
                 }
 
                 if (selectionKey.isReadable()) { // 发生 OP_READ
                     // 通过selectionKey 反向获取到对应的channel
                     SocketChannel socketChannel = (SocketChannel)selectionKey.channel();
+
+                    // 改变关联的事件，要根据自己的业务逻辑修改
+//                    selectionKey.interestOps(SelectionKey.OP_WRITE);
 
                     // 获取到该socketChannel 关联的buffer
                     ByteBuffer buffer = (ByteBuffer)selectionKey.attachment();
