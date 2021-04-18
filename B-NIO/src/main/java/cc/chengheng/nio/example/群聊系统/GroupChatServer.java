@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * 群聊服务端
@@ -114,6 +115,8 @@ public class GroupChatServer {
     private void sendInfoToOtherClients(String message, SocketChannel self) throws IOException {
         System.out.println("服务器转发消息中...");
 
+        // 获取当前的建立通道的SocketChannel
+        Set<SelectionKey> selectionKeys = selector.selectedKeys();
 
         for (SelectionKey key : selector.keys()) {
             Channel targetChannel = key.channel();
