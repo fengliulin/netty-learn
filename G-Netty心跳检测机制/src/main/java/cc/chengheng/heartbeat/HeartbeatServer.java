@@ -56,7 +56,8 @@ public class HeartbeatServer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
     }
 }
