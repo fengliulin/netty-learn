@@ -14,6 +14,8 @@
         <module>C-TCP服务案列netty</module>
         <module>D-HTTP服务程序实例</module>
         <module>Unpooled应用实例</module>
+        <module>Netty</module>
+        <module>netty群聊系统</module>
     </modules>
 
 
