@@ -16,6 +16,7 @@
         <module>Unpooled应用实例</module>
         <module>Netty</module>
         <module>netty群聊系统</module>
+        <module>Netty心跳检测机制</module>
     </modules>
 
 
