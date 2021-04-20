@@ -34,7 +34,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
          */
 
         // 解决方案1 用户程序自定义的普通任务, 在任务队列存放
-        ctx.channel().eventLoop().execute(() -> {
+        /*ctx.channel().eventLoop().execute(() -> {
             try {
                 Thread.sleep(10 * 1000);
                 ctx.writeAndFlush(Unpooled.copiedBuffer("hello, 客户端: 喵2🐱", StandardCharsets.UTF_8));
@@ -65,22 +65,22 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
             }
         }, 5, TimeUnit.SECONDS);
 
-        System.out.println("go on....");
+        System.out.println("go on....");*/
 
-        /*System.out.println("服务器读取线程：" + Thread.currentThread().getName());
+        System.out.println("服务器读取线程：" + Thread.currentThread().getName() + "channel = " + ctx.channel());
 
         System.out.println("server ctx = " + ctx);
         System.out.println("看看channel和pipeline的关系");
         Channel channel = ctx.channel();
         ChannelPipeline pipeline = ctx.pipeline(); // 本质就是一个双向链表，出栈入栈
 
-        *//*
+        /*
          * 将 msg 转成一个ByteBuf
          * ByteBuf 是 Netty 提供的，不是 Nio 的 ByteBuffer
-         *//*
+         */
         ByteBuf buffer = (ByteBuf) msg;
         System.out.println("客户端发送消息是:" + buffer.toString(StandardCharsets.UTF_8));
-        System.out.println("客户端地址：" + ctx.channel().remoteAddress());*/
+        System.out.println("客户端地址：" + ctx.channel().remoteAddress());
     }
 
     /**
