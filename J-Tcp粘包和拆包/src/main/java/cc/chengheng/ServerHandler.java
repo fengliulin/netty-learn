@@ -24,7 +24,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
         // 服务器回送给客户端，回送一个随机id
         ByteBuf byteBuf = Unpooled.copiedBuffer(UUID.randomUUID().toString(), StandardCharsets.UTF_8);
-        ctx.writeAndFlush(byteBuf);
+        ctx.channel().writeAndFlush(byteBuf);
     }
 
     @Override

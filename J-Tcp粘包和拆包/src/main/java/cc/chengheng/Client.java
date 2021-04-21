@@ -7,7 +7,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class Client {
     public static void main(String[] args) {
-        NioEventLoopGroup group = new NioEventLoopGroup();
+        NioEventLoopGroup group = new NioEventLoopGroup(8);
 
         Bootstrap bootstrap = new Bootstrap();
 
