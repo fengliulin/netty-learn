@@ -1,5 +1,6 @@
-package cc.chengheng;
+package cc.chengheng.自定义解决粘包和拆包解决方案;
 
+import cc.chengheng.ClientInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
