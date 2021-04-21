@@ -1,4 +1,6 @@
 ./protoc
--I=/Users/fengliulin/IdeaProjects/netty-learn/H-protobuf/src/main/java/cc/chengheng/protobuf/
---java_out=/Users/fengliulin/IdeaProjects/netty-learn/H-protobuf/src/main/java/cc/chengheng/protobuf/
+-I=/Users/fengliulin/IdeaProjects/netty-learn/H-protobuf/src/main/java/
+
+--java_out=/Users/fengliulin/IdeaProjects/netty-learn/H-protobuf/src/main/java/
+
 /Users/fengliulin/IdeaProjects/netty-learn/H-protobuf/src/main/java/cc/chengheng/protobuf/Student.proto
