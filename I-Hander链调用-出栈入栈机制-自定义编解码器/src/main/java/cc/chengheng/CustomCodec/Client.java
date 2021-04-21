@@ -18,7 +18,7 @@ public class Client {
 
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 7000).sync();
 
-            channelFuture.channel().close().sync();
+            channelFuture.channel().closeFuture().sync();
 
         } catch (InterruptedException e) {
             e.printStackTrace();

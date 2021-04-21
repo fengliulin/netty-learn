@@ -6,7 +6,7 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
-public class ServerByteToLongDecoder extends ByteToMessageDecoder {
+public class ByteToLongDecoder extends ByteToMessageDecoder {
 
     /**
      * 会根据接收到的数据，被调用多次，直到确定没有新的元素被添加到list，或者是ByteBuf没有更多的可读字节为止

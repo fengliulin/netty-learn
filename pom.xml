@@ -18,8 +18,8 @@
         <module>G-Netty心跳检测机制</module>
         <module>WebSocket-Long-connection</module>
         <module>H-protobuf</module>
-        <module>TCP粘包和拆包</module>
-        <module>I-出栈入栈机制自定义编解码器</module>
+        <module>C-TCP服务案列netty</module>
+        <module>I-Hander链调用-出栈入栈机制-自定义编解码器</module>
         <module>J-Tcp粘包和拆包</module>
     </modules>
 

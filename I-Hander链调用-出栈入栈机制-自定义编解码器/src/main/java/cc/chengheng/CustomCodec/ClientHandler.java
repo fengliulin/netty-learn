@@ -10,7 +10,8 @@ public class ClientHandler extends SimpleChannelInboundHandler<Long> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Long msg) throws Exception {
-
+        System.out.println("服务器的ip=" + ctx.channel().remoteAddress());
+        System.out.println("收到服务器消息=" + msg);
     }
 
     /**
@@ -23,7 +24,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<Long> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("MyClientHandler 发送数据");
 //        ctx.writeAndFlush(Unpooled.copiedBuffer(""))
-//        ctx.writeAndFlush(123456L);
+        ctx.writeAndFlush(123456L);
 
         /*
          *  1、"aaaaaaaaaaaaaaaa"是16个字节
@@ -51,6 +52,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<Long> {
             }
          * 4、因此我们在编写 Encoder 要注意传入的数据类型和处理的数据类型要一致
          */
-        ctx.writeAndFlush(Unpooled.copiedBuffer("aaaaaaaaaaaaaaaa", StandardCharsets.UTF_8));
+        //ctx.writeAndFlush(Unpooled.copiedBuffer("aaaaaaaaaaaaaaaa", StandardCharsets.UTF_8));
     }
 }
