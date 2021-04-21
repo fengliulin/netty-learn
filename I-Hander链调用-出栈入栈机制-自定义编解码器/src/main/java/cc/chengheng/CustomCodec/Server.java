@@ -5,7 +5,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class CodecServer {
+public class Server {
     public static void main(String[] args) {
 
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
