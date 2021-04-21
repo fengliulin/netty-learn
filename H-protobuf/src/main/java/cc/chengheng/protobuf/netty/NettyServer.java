@@ -1,6 +1,6 @@
-package cc.chengheng.netty;
+package cc.chengheng.protobuf.netty;
 
-import cc.chengheng.netty.Handler.NettyServerHandler;
+import cc.chengheng.protobuf.netty.Handler.NettyServerHandler;
 import cc.chengheng.protobuf.StudentPOJO;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;

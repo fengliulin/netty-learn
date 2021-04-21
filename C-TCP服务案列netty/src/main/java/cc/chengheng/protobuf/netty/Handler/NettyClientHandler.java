@@ -1,4 +1,4 @@
-package cc.chengheng.netty.Handler;
+package cc.chengheng.protobuf.netty.Handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

@@ -1,6 +1,6 @@
-package cc.chengheng.netty;
+package cc.chengheng.protobuf.netty;
 
-import cc.chengheng.netty.Handler.NettyClientHandler;
+import cc.chengheng.protobuf.netty.Handler.NettyClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

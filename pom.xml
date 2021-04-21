@@ -18,6 +18,7 @@
         <module>G-Netty心跳检测机制</module>
         <module>WebSocket-Long-connection</module>
         <module>H-protobuf</module>
+        <module>TCP粘包和拆包</module>
     </modules>
 
 

@@ -1,11 +1,14 @@
-package cc.chengheng.netty;
+package cc.chengheng.protobuf发送多种数据.netty;
 
-import cc.chengheng.netty.Handler.NettyServerHandler;
+import cc.chengheng.protobuf.StudentPOJO;
+import cc.chengheng.protobuf发送多种数据.MyDataInfo;
+import cc.chengheng.protobuf发送多种数据.netty.Handler.NettyServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
 public class NettyServer {
     public static void main(String[] args) throws InterruptedException {
@@ -36,6 +39,12 @@ public class NettyServer {
                                 // 给 pipeline 设置处理器
                                 @Override
                                 protected void initChannel(SocketChannel ch) throws Exception {
+                                    ChannelPipeline pipeline = ch.pipeline();
+                                    // 在pipeline计入ProtoBufDecoder
+                                    pipeline.addLast("decoder",
+                                            new ProtobufDecoder(MyDataInfo.MyMessage.getDefaultInstance())
+                                    );
+
                                     /*
                                      * 可以使用一个集合管理 SocketChannel，在推送消息时，
                                      * 可以将业务加入到各个channel对应的NIOEventLoop 的 taskQueue,
@@ -43,7 +52,7 @@ public class NettyServer {
                                      */
                                     System.out.println("客户SocketChannel hashcode=" + ch.hashCode());
 
-                                    ch.pipeline().addLast(new NettyServerHandler());
+                                    pipeline.addLast(new NettyServerHandler());
                                 }
                             }
                     ); // 给我们的 workerGroup 的 EventLoop 对应的管道设置处理器
