@@ -8,23 +8,32 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
-public class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
+public class ServerHandler extends SimpleChannelInboundHandler<MessageProtocol> {
 
     private int count;
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-        byte[] buffer = new byte[msg.readableBytes()];
+    protected void channelRead0(ChannelHandlerContext ctx, MessageProtocol msg) throws Exception {
+        // 接收到数据，并处理
+        int len = msg.getLen();
+        byte[] content = msg.getContent();
 
-        msg.readBytes(buffer);
+        System.out.println("服务器接收到信息如下");
+        System.out.println("长度=" + len);
+        System.out.println("内容=" + new String(content, StandardCharsets.UTF_8));
 
-        String message = new String(buffer, StandardCharsets.UTF_8);
-        System.out.println("服务器接收到数据" + message);
-        System.out.println("服务器接收到消息量 = " + (++count));
+        System.out.println(" 服务器接收到消息包数量=" + (++count));
 
-        // 服务器回送给客户端，回送一个随机id
-        ByteBuf byteBuf = Unpooled.copiedBuffer(UUID.randomUUID().toString(), StandardCharsets.UTF_8);
-        ctx.channel().writeAndFlush(byteBuf);
+        // 回复消息
+        String responseContent = UUID.randomUUID().toString();
+        byte[] responseContent2 = responseContent.getBytes(StandardCharsets.UTF_8);
+
+        // 构建一个协议包
+        MessageProtocol messageProtocol = new MessageProtocol();
+        messageProtocol.setLen(responseContent2.length);
+        messageProtocol.setContent(responseContent2);
+
+        ctx.writeAndFlush(messageProtocol);
     }
 
     @Override
