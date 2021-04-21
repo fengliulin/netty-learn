@@ -3,7 +3,7 @@ package cc.chengheng.CustomCodec;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class CustomCodecServerHandler extends SimpleChannelInboundHandler<Long> {
+public class ServerHandler extends SimpleChannelInboundHandler<Long> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Long msg) throws Exception {
         System.out.println("从客户端" + ctx.channel().remoteAddress() +

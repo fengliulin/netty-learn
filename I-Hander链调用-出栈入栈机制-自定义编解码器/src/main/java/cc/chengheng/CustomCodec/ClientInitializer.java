@@ -4,15 +4,17 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 
-public class CustomCodecServerInitializer extends ChannelInitializer<SocketChannel> {
+public class ClientInitializer extends ChannelInitializer<SocketChannel> {
+
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
 
-        // 入栈的handler进行解码 MyByteToLongDecoder
-        pipeline.addLast(new MyByteToLongDecoder());
+        // 加入一个出栈的handler 对数据进行一个编码
+        pipeline.addLast(new ClientLongToByteEncoder());
 
-        // 自定义的handler 处理业务逻辑
-        pipeline.addLast(new CustomCodecServerHandler());
+        // 加入一个自定义的handler，处理业务
+        pipeline.addLast(new ClientHandler());
+
     }
 }

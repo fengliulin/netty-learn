@@ -5,7 +5,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class CustomCodecClient {
+public class Client {
     public static void main(String[] args) {
         NioEventLoopGroup group = new NioEventLoopGroup();
 
@@ -14,7 +14,7 @@ public class CustomCodecClient {
         try {
             bootstrap.group(group)
                     .channel(NioSocketChannel.class)
-                    .handler(new CustomCodecClientInitializer()); // 自定义一个初始化类
+                    .handler(new ClientInitializer()); // 自定义一个初始化类
 
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 7000).sync();
 
