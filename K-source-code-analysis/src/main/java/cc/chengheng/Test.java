@@ -2,7 +2,7 @@ package cc.chengheng;
 
 public class Test {
 
-    private String string;
+    private String string = new String();
     private static String string1 = new String();
 
     static {
@@ -19,6 +19,7 @@ public class Test {
 
     }
     public void test() {
+        A a = new A();
         System.out.println(string1);
         System.out.println();
         System.out.println();

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>F-source-code-analysis</artifactId>
+    <artifactId>K-source-code-analysis</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -21,7 +21,7 @@
         <module>C-TCP服务案列netty</module>
         <module>I-Hander链调用-出栈入栈机制-自定义编解码器</module>
         <module>J-Tcp粘包和拆包</module>
-        <module>F-source-code-analysis</module>
+        <module>K-source-code-analysis</module>
     </modules>
 
 
