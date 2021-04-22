@@ -15,6 +15,7 @@
  */
 package cc.chengheng.异步线程池分析;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
@@ -30,7 +31,7 @@ import java.nio.charset.StandardCharsets;
 @Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
-    // group就是充当业务线程池， 创建了16个
+    // group就是充当业务线程池，可以将任务提交到该线程池。 创建了16个
     private final EventExecutorGroup group = new DefaultEventExecutorGroup(16);
 
     @Override
@@ -38,7 +39,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("EchoServerHandler 的线程是=" + Thread.currentThread().getName());
 
         // 用户程序自定义普通任务
-        ctx.channel().eventLoop().execute(() -> {
+        /*ctx.channel().eventLoop().execute(() -> {
              try {
                 Thread.sleep(5 * 1000);
                  System.out.println("EchoServerHandler execute 线程是=" + Thread.currentThread().getName());
@@ -47,6 +48,26 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        });*/
+
+        // 将任务提交到group线程池
+        group.submit(() -> {
+            // 接收客户端信息
+            ByteBuf buf = (ByteBuf) msg;
+            byte[] bytes = new byte[buf.readableBytes()];
+            buf.readBytes(bytes);
+            new String(bytes, StandardCharsets.UTF_8);
+
+            // 休眠10秒
+            try {
+                Thread.sleep(10 * 1000);
+                System.out.println("group.submit 的 call 线程是=" + Thread.currentThread().getName());
+                ctx.writeAndFlush(Unpooled.copiedBuffer("hello, 客户端: 喵2🐱", StandardCharsets.UTF_8));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return null;
         });
 
         System.out.println("go on");
