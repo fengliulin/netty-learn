@@ -13,11 +13,14 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package cc.chengheng.A启动分析.echo;
+package cc.chengheng.异步线程池分析;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Handler implementation for the echo server.
@@ -27,7 +30,21 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ctx.write(msg);
+        System.out.println("EchoServerHandler 的线程是=" + Thread.currentThread().getName());
+
+        // 用户程序自定义普通任务
+        ctx.channel().eventLoop().execute(() -> {
+             try {
+                Thread.sleep(5 * 1000);
+                 System.out.println("EchoServerHandler execute 线程是=" + Thread.currentThread().getName());
+                // 输出线程名
+                ctx.writeAndFlush(Unpooled.copiedBuffer("hello, 客户端: 喵2🐱", StandardCharsets.UTF_8));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        System.out.println("go on");
     }
 
     @Override
