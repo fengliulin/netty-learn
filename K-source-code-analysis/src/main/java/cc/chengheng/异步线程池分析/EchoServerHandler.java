@@ -19,6 +19,8 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.EventExecutorGroup;
 
 import java.nio.charset.StandardCharsets;
 
@@ -27,6 +29,9 @@ import java.nio.charset.StandardCharsets;
  */
 @Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+
+    // group就是充当业务线程池， 创建了16个
+    private final EventExecutorGroup group = new DefaultEventExecutorGroup(16);
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
