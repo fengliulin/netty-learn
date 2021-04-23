@@ -22,6 +22,7 @@
         <module>I-Hander链调用-出栈入栈机制-自定义编解码器</module>
         <module>J-Tcp粘包和拆包</module>
         <module>K-source-code-analysis</module>
+        <module>模拟dubbo-RPC-netty</module>
     </modules>
 
 
