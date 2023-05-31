@@ -27,12 +27,12 @@ public class NioServer {
 
         // 循环等待客户端连接
         while (true) {
-
+            selector.select(1000);
             // 等待1秒，如果没有事件发生，返回
-            if (selector.select(1000) == 0) { // 没有事件发生
-                System.out.println("服务器等待了1秒，无连接");
-                continue;
-            }
+//            if (selector.select(1000) == 0) { // 没有事件发生
+//                System.out.println("服务器等待了1秒，无连接");
+//                continue;
+//            }
 
             /* 如果返回的 > 0，就获取到相关的 selectedKey 集合
              *  1、如果返回的 > 0，表示已经获取到关注的事件
