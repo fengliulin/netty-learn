@@ -35,7 +35,7 @@ public class ReadData {
         ) {
 
             // 创建缓冲区, 就是分配一快内存
-            ByteBuffer byteBuffer = ByteBuffer.allocate(3);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(30);
             CharBuffer charBuffer = CharBuffer.allocate(3);
 
             byte[] remainByte = null; // 剩余字节
