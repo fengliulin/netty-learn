@@ -20,7 +20,7 @@ public class NioClient {
         // 连接服务器
         if (!(socketChannel.connect(inetSocketAddress))) {
             while (!(socketChannel.finishConnect())) {
-                System.out.println("因为连接需要事件，客户端不会阻塞，可以做其它工作...");
+                System.out.println("/dff/dfd");
             }
         }
 

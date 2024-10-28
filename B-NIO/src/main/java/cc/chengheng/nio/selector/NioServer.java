@@ -23,7 +23,7 @@ public class NioServer {
         // ServerSocketChannel 注册到 Selector,关心事件为 OP_ACCEPT
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
-        System.out.println("服务器启动注册后的selectionKey 数量=" + selector.keys().size());
+        System.out.println("服务器启动注册后的selectionKey 数量=" +  selector.keys().size());
 
         // 循环等待客户端连接
         while (true) {

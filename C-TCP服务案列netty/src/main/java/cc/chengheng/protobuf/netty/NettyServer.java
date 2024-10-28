@@ -8,6 +8,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class NettyServer {
+    private String field;
     public static void main(String[] args) throws InterruptedException {
         /*
          * 创建BossGroup 和 WorkerGroup
